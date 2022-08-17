@@ -32,7 +32,7 @@ client.handlerEvents();
 client.login(config.token);
 /*Connect MongoDB*/
 (async () => {
-  connect(`mongodb+srv://vitbuon2008:Anh345886%40gmail%2Ecom@senko-san.dsdtl9g.mongodb.net/Data`)
+  connect(config.mongoURL)
 })();
 /*Client mongodb coin*/
 const moneyUser = require('./Schemas/money');
