@@ -2,8 +2,8 @@ const { Client, Intents, Collection } = require("discord.js");
 const { connect, Schema, Promise } = require("mongoose");
 const chalk = require("chalk");
 const fs = require("fs");
-const process = require('process')
-const config = require('./config')
+const process = require("process");
+const config = require("./config");
 /*Client Intents*/
 const client = new Client({
   intents: [
@@ -32,34 +32,67 @@ client.handlerEvents();
 client.login(config.token);
 /*Connect MongoDB*/
 (async () => {
-  connect(config.mongoURL)
+  connect(config.mongoURL);
 })();
 /*Client mongodb coin*/
-const moneyUser = require('./Schemas/money');
-client.add = async(id, coins) => {
-  moneyUser.findOne({ id }, async(err, data) => {
+const moneyUser = require("./Schemas/money");
+client.add = async (id, coins) => {
+  moneyUser.findOne({ id }, async (err, data) => {
     if (err) Error(err);
     if (data) {
       data.coins += coins;
     } else {
       data = new Schema({ id, coins });
     }
-    data.save()
-  })
+    data.save();
+  });
+};
+client.rmv = async (id, coins) => {
+  moneyUser.findOne({ id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins -= coins;
+    } else {
+      data = new Schema({ id, coins: -coins });
+    }
+    data.save();
+  });
+};
+client.bal = (id) => {
+  new Promise(async (ful) => {
+    const data = await moneyUser.findOne({ id });
+    if (!data) return ful(0);
+    ful(data.coins);
+  });
 }
-client.rmv = async(id, coins) => {
-  moneyUser.findOne({ id }, async(err, data) => {
+/*Client mongodb bank*/
+const bankUser = require("./Schemas/bank");
+client.addBank = async (id, coins) => {
+  bankUser.findOne({ id }, async (err, data) => {
     if (err) Error(err);
     if (data) {
       data.coins += coins;
     } else {
+      data = Schema({ id, coins });
+    }
+    data.save();
+  });
+};
+client.rmvBank = async (id, coins) => {
+  bankUser.findOne({ id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins -= coins;
+    } else {
       data = new Schema({ id, coins: -coins });
     }
-    data.save()
-  })
+    data.save();
+  });
+};
+client.balBank = (id) => {
+  new Promise(async (ful) => {
+    const data = await bankUser.findOne({ id });
+    if (!data) return ful(0);
+    ful(data.coins);
+  });
 }
-client.bal = (id) => new Promise(async ful => {
-  const data = await moneyUser.findOne({ id });
-  if (!data) return ful(0);
-  ful(data.coins);
-})
