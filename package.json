@@ -1,0 +1,25 @@
+{
+  "name": "senko-san-v3.1.2",
+  "version": "3.1.2",
+  "description": "",
+  "main": "src/bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitbuon345/senko-san-v3.1.2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitbuon345/senko-san-v3.1.2/issues"
+  },
+  "homepage": "https://github.com/vitbuon345/senko-san-v3.1.2#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "discord.js": "^13.10.2",
+    "dotenv": "^16.0.1",
+    "mongoose": "^6.5.2"
+  }
+}
