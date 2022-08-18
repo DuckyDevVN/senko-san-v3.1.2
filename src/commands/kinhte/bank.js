@@ -52,7 +52,7 @@ module.exports = {
       .setTitle(
         `${message.member.displayName}, số dư hiện tại của bạn không đủ điều kiện để thực hiện!`
       )
-      .setColor(config.colorEmbed)
+      .setColor(config.colorEmbedErr)
       .setThumbnail(message.member.displayAvatarURL());
     const m = await message.channel.send({
       components: [row],

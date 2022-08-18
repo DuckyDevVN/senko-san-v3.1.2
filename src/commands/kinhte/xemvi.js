@@ -7,7 +7,7 @@ module.exports = {
     const m = await client.bal(message.author.id)
     const embed = new MessageEmbed()
       .setTimestamp(Date.now())
-      .setTitle(`[Trong Ví]: ${m} ${config.dvtt}`)
+      .setTitle(`[Trong Ví]: ${m} ${config.iconDVTT}`)
       .setThumbnail(message.member.displayAvatarURL())
       .setColor(config.colorEmbed);
     await message.channel.send({

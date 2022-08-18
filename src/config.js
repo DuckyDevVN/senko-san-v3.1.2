@@ -5,5 +5,7 @@ module.exports = {
   colorEmbed: "#ffe852",
   mongoURL:
     "mongodb+srv://vitbuon2008:Anh345886%40gmail%2Ecom@senko-san.dsdtl9g.mongodb.net/Data",
-  dvtt: "SC"
+  dvtt: "SC",
+  colorEmbedErr: "RED",
+  iconDVTT: "<:SenkoCoin:1009839608592343121>"
 };

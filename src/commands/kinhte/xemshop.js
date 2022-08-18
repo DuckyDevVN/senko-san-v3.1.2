@@ -6,7 +6,7 @@ module.exports = {
   aliases: ["shop"],
   async execute(client, message, args) {
     const shoplist = itemList.map((values, index) => {
-      return `${index++}#${values.emoji + values.item} => ${values.giatri}`;
+      return `${index++}#${values.emoji + values.item} => ${values.giatri} ${config.iconDVTT}`;
     });
     await message.channel.send({
       embeds: [

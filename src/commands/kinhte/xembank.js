@@ -7,7 +7,7 @@ module.exports = {
     const m = await client.balBank(message.author.id)
     const embed = new MessageEmbed()
       .setTimestamp(Date.now())
-      .setTitle(`[Trong Bank]: ${m} ${config.dvtt}`)
+      .setTitle(`[Trong Bank]: ${m} ${config.iconDVTT}`)
       .setThumbnail(message.member.displayAvatarURL())
       .setColor(config.colorEmbed);
     await message.channel.send({
