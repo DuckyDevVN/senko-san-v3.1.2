@@ -10,7 +10,10 @@ module.exports = {
   name: "bank",
   async execute(client, message, args) {
     const moneyAdd = parseInt(args[0]);
-    if (!moneyAdd) return message.channel.send(`<@${message.author.id}>, bạn vui lòng nhập một số tiền nhất định!`) 
+    if (!moneyAdd)
+      return message.channel.send(
+        `<@${message.author.id}>, bạn vui lòng nhập một số tiền nhất định!`
+      );
     const row = new MessageActionRow().addComponents([
       new MessageButton().setLabel("Gửi").setCustomId("1").setStyle("SUCCESS"),
       new MessageButton().setLabel("Rút").setCustomId("2").setStyle("SUCCESS"),
@@ -45,6 +48,12 @@ module.exports = {
       )
       .setColor(config.colorEmbed)
       .setThumbnail(message.member.displayAvatarURL());
+    const embedErr = new MessageEmbed()
+      .setTitle(
+        `${message.member.displayName}, số dư hiện tại của bạn không đủ điều kiện để thực hiện!`
+      )
+      .setColor(config.colorEmbed)
+      .setThumbnail(message.member.displayAvatarURL());
     const m = await message.channel.send({
       components: [row],
       embeds: [embed],
@@ -65,22 +74,36 @@ module.exports = {
     collector1.on("collect", async (collected) => {
       const id = collected.customId;
       if (id === "1") {
-        if (client.bal(message.author.id) < moneyAdd) return;
-        client.addBank(message.author.id, moneyAdd);
-        client.rmv(message.author.id, moneyAdd);
-        await collected.update({
-          embeds: [embedGui],
-          components: [row2],
-        });
+        const moneyUser = await client.bal(message.author.id)
+        if (moneyUser < moneyAdd) {
+          collected.update({
+            embeds: [embedErr],
+            components: [row2],
+          });
+        } else {
+          client.addBank(message.author.id, moneyAdd);
+          client.rmv(message.author.id, moneyAdd);
+          collected.update({
+            embeds: [embedGui],
+            components: [row2],
+          });
+        }
       }
       if (id === "2") {
-        if (client.balBank(message.author.id) < moneyAdd) return;
-        client.rmvBank(message.author.id, moneyAdd);
-        client.add(message.author.id, moneyAdd);
-        await collected.update({
-          embeds: [embedRut],
-          components: [row2],
-        });
+        const bankUser = await client.balBank(message.author.id);
+          if (bankUser < moneyAdd) {
+          collected.update({
+            embeds: [embedErr],
+            components: [row2],
+          });
+        } else {
+          client.rmvBank(message.author.id, moneyAdd);
+          client.add(message.author.id, moneyAdd);
+          collected.update({
+            embeds: [embedRut],
+            components: [row2],
+          });
+        }
       }
     });
   },
