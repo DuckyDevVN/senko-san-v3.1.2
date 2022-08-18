@@ -1,5 +1,5 @@
 const { Client, Intents, Collection } = require("discord.js");
-const { connect, Schema, Promise } = require("mongoose");
+const { connect, Schema } = require("mongoose");
 const chalk = require("chalk");
 const fs = require("fs");
 const process = require("process");
@@ -32,7 +32,9 @@ client.handlerEvents();
 client.login(config.token);
 /*Connect MongoDB*/
 (async () => {
-  connect(config.mongoURL);
+  connect(config.mongoURL).catch((err) => {
+    console.log(chalk.red(err))
+  });
 })();
 /*Client mongodb coin*/
 const moneyUser = require("./Schemas/money");
@@ -42,7 +44,7 @@ client.add = async (id, coins) => {
     if (data) {
       data.coins += coins;
     } else {
-      data = new Schema({ id, coins });
+      data = new moneyUser({ id, coins });
     }
     data.save();
   });
@@ -53,18 +55,16 @@ client.rmv = async (id, coins) => {
     if (data) {
       data.coins -= coins;
     } else {
-      data = new Schema({ id, coins: -coins });
+      data = new moneyUser({ id, coins: -coins });
     }
     data.save();
   });
 };
-client.bal = (id) => {
-  new Promise(async (ful) => {
+client.bal = (id) => new Promise(async (ful) => {
     const data = await moneyUser.findOne({ id });
     if (!data) return ful(0);
     ful(data.coins);
-  });
-}
+});
 /*Client mongodb bank*/
 const bankUser = require("./Schemas/bank");
 client.addBank = async (id, coins) => {
@@ -73,7 +73,7 @@ client.addBank = async (id, coins) => {
     if (data) {
       data.coins += coins;
     } else {
-      data = Schema({ id, coins });
+      data = bankUser({ id, coins });
     }
     data.save();
   });
@@ -84,15 +84,13 @@ client.rmvBank = async (id, coins) => {
     if (data) {
       data.coins -= coins;
     } else {
-      data = new Schema({ id, coins: -coins });
+      data = new bankUser({ id, coins: -coins });
     }
     data.save();
   });
 };
-client.balBank = (id) => {
-  new Promise(async (ful) => {
+client.balBank = (id) => new Promise(async (ful) => {
     const data = await bankUser.findOne({ id });
     if (!data) return ful(0);
     ful(data.coins);
-  });
-}
+});

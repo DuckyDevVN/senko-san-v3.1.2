@@ -1,7 +1,9 @@
-const { model, Schema } = require('mongoose');
+const mongodb = require("mongoose");
 
-const moneyMember = new Schema({
-  id: String,
-  coins: Number
-})
-module.exports = model('money', moneyMember)
+module.exports = mongodb.model(
+  "money",
+  new mongodb.Schema({
+    id: String,
+    coins: Number,
+  })
+);

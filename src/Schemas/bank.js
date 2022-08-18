@@ -1,8 +1,8 @@
-const { model, Schema } = require('mongoose');
+const mongodb = require('mongoose');
 
-const bankUser = new Schema({
-  id: { type: String },
-  coins: Number
-})
-
-module.exports = model('bank', bankUser)
+module.exports = mongodb.model('bank', 
+  new mongodb.Schema({
+    id: String,
+    coins: Number
+  })
+)

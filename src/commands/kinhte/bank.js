@@ -65,18 +65,18 @@ module.exports = {
     collector1.on("collect", async (collected) => {
       const id = collected.customId;
       if (id === "1") {
-        if (client.bal(message.author.id.toString()) < moneyAdd)  return;
-        client.addBank(message.author.id.toString(), moneyAdd);
-        client.rmv(message.author.id.toString(), moneyAdd);
+        if (client.bal(message.author.id) < moneyAdd) return;
+        client.addBank(message.author.id, moneyAdd);
+        client.rmv(message.author.id, moneyAdd);
         await collected.update({
           embeds: [embedGui],
           components: [row2],
         });
       }
       if (id === "2") {
-        if (client.balBank(message.author.id.toString()) < moneyAdd) return;
-        client.rmvBank(message.author.id.toString(), moneyAdd);
-        client.add(message.author.id.toString(), moneyAdd);
+        if (client.balBank(message.author.id) < moneyAdd) return;
+        client.rmvBank(message.author.id, moneyAdd);
+        client.add(message.author.id, moneyAdd);
         await collected.update({
           embeds: [embedRut],
           components: [row2],
