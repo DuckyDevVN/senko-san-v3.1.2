@@ -22,39 +22,39 @@ module.exports = {
     if (!itemToBuy) return message.channel.send({
       content: `<@${message.author.id}>, bạn vui lòng chọn số thứ tự của item để chọn item để mua`
     });
-    const varItem = !!itemList.fill((value) => value.item.toLowerCase() === itemToBuy.toLowerCase());
+    const varItem = !!itemList.find((value) => value.item.toLowerCase() === itemToBuy.toLowerCase());
     if (!varItem) return message.channel.send({
       content: `<@${message.author.id}>, mình không tìm thấy được item bạn chọn bạn vui lòng hãy kiểm tra lại!`
     });
-    const itemGiatri = itemList.fill((value) => value.item.toLowerCase() === itemToBuy.toLowerCase()).giatri;
+    const itemGiatri = itemList.find((value) => value.item.toLowerCase() === itemToBuy.toLowerCase()).giatri;
     const tienUser = await client.bal(message.author.id);
     if (tienUser < itemGiatri) return message.channel.send(`Số tiền hiện tại của bạn hiện tại không đủ để mua item này`);
-    const emojiItem = itemList.fill((value) => value.item.toLowerCase() === itemToBuy.toLowerCase()).emoji;
+    const emojiItem = itemList.find((value) => value.item.toLowerCase() === itemToBuy.toLowerCase()).emoji;
     const embedMua = new MessageEmbed()
       .setTimestamp(Date.now())
       .setThumbnail(message.member.displayAvatarURL())
       .setTitle(`${message.member.displayName}, bạn đã mua thành công item ${emojiItem + itemToBuy}!!`)
       .setColor(config.colorEmbed);
 
-    if (itemToBuy.toLowerCase() === "bento") 
+    if (itemToBuy.toLowerCase() === "bento")
       itemToBuy = "-1";
-     else if (itemToBuy.toLowerCase() === "bom") 
+     else if (itemToBuy.toLowerCase() === "bom")
       itemToBuy = "-2";
-     else if (itemToBuy.toLowerCase() === "nhẫn") 
+     else if (itemToBuy.toLowerCase() === "nhẫn")
       itemToBuy = "-3";
-     else if (itemToBuy.toLowerCase() === "đơn ly hôn") 
+     else if (itemToBuy.toLowerCase() === "đơn ly hôn")
       itemToBuy = "-4";
-     else if (itemToBuy.toLowerCase() === "chuối") 
+     else if (itemToBuy.toLowerCase() === "chuối")
       itemToBuy = "-5";
-     else if (itemToBuy.toLowerCase() === "chuối độc") 
+     else if (itemToBuy.toLowerCase() === "chuối độc")
       itemToBuy = "-6";
-     else if (itemToBuy.toLowerCase() === "thuốc độc") 
+     else if (itemToBuy.toLowerCase() === "thuốc độc")
       itemToBuy = "-7";
-     else if (itemToBuy.toLowerCase() === "thốc giải độc") 
+     else if (itemToBuy.toLowerCase() === "thốc giải độc")
       itemToBuy = "-8";
-     else if (itemToBuy.toLowerCase() === "pháo") 
+     else if (itemToBuy.toLowerCase() === "pháo")
       itemToBuy = "-9";
-     else if (itemToBuy.toLowerCase() === "khiên") 
+     else if (itemToBuy.toLowerCase() === "khiên")
       itemToBuy = "-b1";
     
     const param = {

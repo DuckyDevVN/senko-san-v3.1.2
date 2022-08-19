@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const config = require('../../config');
 module.exports = {
-  name: "xemtien",
+  name: "xemcoin",
   async execute(client, message, args) {
     const money = await client.bal(message.author.id);
     const bank = await client.balBank(message.author.id);

@@ -4,6 +4,9 @@ const chalk = require("chalk");
 const fs = require("fs");
 const process = require("process");
 const config = require("./config");
+const mongoUser = `vitbuon2008`;
+const mongoPasswold = encodeURIComponent(`Anh345886%40gmail.com`);
+const mongoURL = `mongodb+srv://${mongoUser}:${mongoPasswold}@senko-san.dsdtl9g.mongodb.net/serverData`;
 /*Client Intents*/
 const client = new Client({
   intents: [
@@ -32,7 +35,12 @@ client.handlerEvents();
 client.login(config.token);
 /*Connect MongoDB*/
 (async () => {
-  connect(config.mongoURL).catch((err) => {
+  connect(config.mongoURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+  }).catch((err) => {
     console.log(chalk.red(err))
   });
 })();
@@ -61,9 +69,9 @@ client.rmv = async (id, coins) => {
   });
 };
 client.bal = (id) => new Promise(async (ful) => {
-    const data = await moneyUser.findOne({ id });
-    if (!data) return ful(0);
-    ful(data.coins);
+  const data = await moneyUser.findOne({ id });
+  if (!data) return ful(0);
+  ful(data.coins);
 });
 /*Client mongodb bank*/
 const bankUser = require("./Schemas/bank");
@@ -90,7 +98,7 @@ client.rmvBank = async (id, coins) => {
   });
 };
 client.balBank = (id) => new Promise(async (ful) => {
-    const data = await bankUser.findOne({ id });
-    if (!data) return ful(0);
-    ful(data.coins);
+  const data = await bankUser.findOne({ id });
+  if (!data) return ful(0);
+  ful(data.coins);
 });
