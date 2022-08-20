@@ -10,7 +10,7 @@ module.exports = {
         new MessageEmbed()
           .setThumbnail(message.member.displayAvatarURL())
           .setTitle(
-            `${message.member.displayName}, đây là phần trăm điểm thiện cảm của mình dành cho bạn: ${DTCUser/(DTCUser+10000)*100}%`
+            `${message.member.displayName}, đây là phần trăm điểm thiện cảm của mình dành cho bạn: ${DTCUser/(DTCUser+10000)*100}% | ${DTCUser}`
           )
           .setTimestamp(Date.now())
           .setColor(config.colorEmbed),
