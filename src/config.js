@@ -1,6 +1,6 @@
 module.exports = {
   token:
-    "OTY4NTAyMzczMjY3OTYzOTk0.Gc8Gw5.5U9DXI_qKnm6GNxvqF1Ci1uqZ6QWFcPet3_hE0",
+    "OTgxNTAzMTI4OTMzMzg0MjEy.GoZl33.yfIQBoWYlwCxFe89wIxP4a4xwu_ZLu47dWtaTk",
   prefix: "sk",
   colorEmbed: "#ffe852",
   mongoURL:
