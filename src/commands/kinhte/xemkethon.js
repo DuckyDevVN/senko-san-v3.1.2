@@ -9,23 +9,44 @@ module.exports = {
     const param = {
       User: xemUser.id,
     };
-    bandoiUser.findOne(param, async (err, data) => {
+    const pram = {
+      Bandoi: xemUser.id,
+    };
+    bandoiUser.findOne(pram, async (err, data) => {
       if (!data) {
-        message.channel.send({
-          embeds: [
-            new MessageEmbed()
-              .setThumbnail(xemUser.displayAvatarURL())
-              .setTitle(`${xemUser.displayName} chưa kết hôn với ai!`)
-              .setColor(config.colorEmbed)
-              .setTimestamp(Date.now()),
-          ],
+        bandoiUser.findOne(param, async (err, data) => {
+          if (!data) {
+            message.channel.send({
+              embeds: [
+                new MessageEmbed()
+                  .setThumbnail(xemUser.displayAvatarURL())
+                  .setTitle(`${xemUser.displayName} chưa kết hôn với ai!`)
+                  .setColor(config.colorEmbed)
+                  .setTimestamp(Date.now()),
+              ],
+            });
+          } else {
+            message.channel.send({
+              embeds: [
+                new MessageEmbed()
+                  .setThumbnail(xemUser.displayAvatarURL())
+                  .setDescription(
+                    `<@${xemUser.id}> đã kết hôn với <@${data.Bandoi}>!`
+                  )
+                  .setColor(config.colorEmbed)
+                  .setTimestamp(Date.now()),
+              ],
+            });
+          }
         });
       } else {
         message.channel.send({
           embeds: [
             new MessageEmbed()
               .setThumbnail(xemUser.displayAvatarURL())
-              .setTitle(`${xemUser.displayName} đã kết hôn với ${data.Bandoi}!`)
+              .setDescription(
+                `<@${xemUser.id}> đã kết hôn với <@${data.User}>!`
+              )
               .setColor(config.colorEmbed)
               .setTimestamp(Date.now()),
           ],
