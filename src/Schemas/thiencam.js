@@ -4,6 +4,6 @@ module.exports = new model(
   "TCSenko",
   new Schema({
     User: String,
-    DTCsenko: Number,
+    coins: Number,
   })
 );

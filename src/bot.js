@@ -105,12 +105,12 @@ client.balBank = (id) => new Promise(async (ful) => {
 /*Client mongodb DTC*/
 const DTCsenkoUser = require('./Schemas/thiencam');
 client.addDTC = async (id, coins) => {
-  DTCsenkoUser.findOne({ id }, async (err, data) => {
+  DTCsenkoUser.findOne({ User: id }, async (err, data) => {
     if (err) Error(err);
     if (data) {
       data.coins += coins;
     } else {
-      data = DTCsenkoUser({ id, coins });
+      data = DTCsenkoUser({ User: id, coins: coins });
     }
     data.save();
   });
@@ -127,7 +127,7 @@ client.rmvDTC = async (id, coins) => {
   });
 };
 client.balDTC = (id) => new Promise(async (ful) => {
-  const data = await DTCsenkoUser.findOne({ id });
+  const data = await DTCsenkoUser.findOne({ User: id });
   if (!data) return ful(0);
   ful(data.coins);
 });
