@@ -10,8 +10,9 @@ module.exports = {
     const psc = [
       `${guild.name}`,
       `server hiện tại có ${guild.memberCount} member`,
-      `owner sever | -Alex#3003`,
-      `owner bot | vịt buồn#3710`,
+      `owner sever | Alex♪#2903`,
+      `owner bot | vịt buồn#2980`,
+      `copyright© 2022 by Senko's coffee☕`
     ];
     setInterval(() => {
       let image = Math.floor(Math.random() * psc.length);

@@ -2,11 +2,7 @@ const { Client, Intents, Collection } = require("discord.js");
 const { connect, Schema } = require("mongoose");
 const chalk = require("chalk");
 const fs = require("fs");
-const process = require("process");
 const config = require("./config");
-const mongoUser = `vitbuon2008`;
-const mongoPasswold = encodeURIComponent(`Anh345886%40gmail.com`);
-const mongoURL = `mongodb+srv://${mongoUser}:${mongoPasswold}@senko-san.dsdtl9g.mongodb.net/serverData`;
 /*Client Intents*/
 const client = new Client({
   intents: [
@@ -128,6 +124,179 @@ client.rmvDTC = async (id, coins) => {
 };
 client.balDTC = (id) => new Promise(async (ful) => {
   const data = await DTCsenkoUser.findOne({ User: id });
+  if (!data) return ful(0);
+  ful(data.coins);
+});
+/*Client mongodb Gold*/
+const goldUser = require("./Schemas/moneyGold");
+client.addGold = async (id, coins) => {
+  goldUser.findOne({ User: id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins += coins;
+    } else {
+      data = new goldUser({ User: id, coins });
+    }
+    data.save();
+  });
+};
+client.rmvGold = async (id, coins) => {
+  goldUser.findOne({ User: id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins -= coins;
+    } else {
+      data = new goldUser({ User: id, coins: -coins });
+    }
+    data.save();
+  });
+};
+client.balGold = (id) => new Promise(async (ful) => {
+  const data = await goldUser.findOne({ User: id });
+  if (!data) return ful(0);
+  ful(data.coins);
+});
+/*Client mongodb pre*/
+const preUser = require("./Schemas/moneyPre");
+client.addPre = async (id, coins) => {
+  preUser.findOne({ User: id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins += coins;
+    } else {
+      data = new preUser({ User: id, coins });
+    }
+    data.save();
+  });
+};
+client.rmvPre = async (id, coins) => {
+  preUser.findOne({ User: id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins -= coins;
+    } else {
+      data = new preUser({ User: id, coins: -coins });
+    }
+    data.save();
+  });
+};
+client.balPre = (id) => new Promise(async (ful) => {
+  const data = await preUser.findOne({ User: id });
+  if (!data) return ful(0);
+  ful(data.coins);
+});
+/*Client mongodb epic*/
+const epicUser = require("./Schemas/moneyEpic");
+client.addEpic = async (id, coins) => {
+  goldUser.findOne({ User: id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins += coins;
+    } else {
+      data = new epicUser({ User: id, coins });
+    }
+    data.save();
+  });
+};
+client.rmvEpic = async (id, coins) => {
+  epicUser.findOne({ User: id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins -= coins;
+    } else {
+      data = new epicUser({ User: id, coins: -coins });
+    }
+    data.save();
+  });
+};
+client.balEpic = (id) => new Promise(async (ful) => {
+  const data = await epicUser.findOne({ User: id });
+  if (!data) return ful(0);
+  ful(data.coins);
+});
+/*Client mongodb bank gold*/
+const bankGoldUser = require("./Schemas/bankGold");
+client.addBankGold = async (id, coins) => {
+  bankGoldUser.findOne({ User: id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins += coins;
+    } else {
+      data = bankGoldUser({ User: id, coins: coins });
+    }
+    data.save();
+  });
+};
+client.rmvBankGold = async (id, coins) => {
+  bankUser.findOne({ User: id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins -= coins;
+    } else {
+      data = new bankGoldUser({ User: id, coins: -coins });
+    }
+    data.save();
+  });
+};
+client.balBankGold = (id) => new Promise(async (ful) => {
+  const data = await bankGoldUser.findOne({ User: id });
+  if (!data) return ful(0);
+  ful(data.coins);
+});
+/*Client mongodb bank pre*/
+const bankPreUser = require("./Schemas/bankPre");
+client.addBankPre = async (id, coins) => {
+  bankGoldUser.findOne({ User: id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins += coins;
+    } else {
+      data = bankPreUser({ User: id, coins: coins });
+    }
+    data.save();
+  });
+};
+client.rmvBankPre = async (id, coins) => {
+  bankUser.findOne({ User: id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins -= coins;
+    } else {
+      data = new bankPreUser({ User: id, coins: -coins });
+    }
+    data.save();  });
+};
+client.balBankPre = (id) => new Promise(async (ful) => {
+  const data = await bankPreUser.findOne({ User: id });
+  if (!data) return ful(0);
+  ful(data.coins);
+});
+/*Client mongodb bank gold*/
+const bankEpicUser = require("./Schemas/bankEpic");
+client.addBankEpic = async (id, coins) => {
+  bankGoldUser.findOne({ User: id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins += coins;
+    } else {
+      data = bankEpicUser({ User: id, coins: coins });
+    }
+    data.save();
+  });
+};
+client.rmvBankEpic = async (id, coins) => {
+  bankEpicUser.findOne({ User: id }, async (err, data) => {
+    if (err) Error(err);
+    if (data) {
+      data.coins -= coins;
+    } else {
+      data = new bankEpicUser({ User: id, coins: -coins });
+    }
+    data.save();
+  });
+};
+client.balBankEpic = (id) => new Promise(async (ful) => {
+  const data = await bankGoldUser.findOne({ User: id });
   if (!data) return ful(0);
   ful(data.coins);
 });

@@ -7,7 +7,10 @@ module.exports = {
     "mongodb+srv://vitbuon2008:Anh345886%40gmail%2Ecom@senko-san.dsdtl9g.mongodb.net/serverData",
   dvtt: "SC",
   colorEmbedErr: "RED",
-  iconDVTT: "<:SenkoCoin:1009839608592343121>",
+  iconDVTT: "<:SenkoCoins:1011272913766322276>",
   ownerId: "823082865553833984",
-  staffCoinId: ""
+  staffCoinId: "",
+  iconDVTTG: "<:SenkoGoldCoins:1011272522920120380>",
+  iconDVTTP: "<:SenkoPremiumCoins:1011273005739016263>",
+  iconDVTTE: "<:SenkoEpicCoins:1011273171627945984>"
 };
