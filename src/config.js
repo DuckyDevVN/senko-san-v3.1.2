@@ -12,5 +12,6 @@ module.exports = {
   staffCoinId: "",
   iconDVTTG: "<:SenkoGoldCoins:1011272522920120380>",
   iconDVTTP: "<:SenkoPremiumCoins:1011273005739016263>",
-  iconDVTTE: "<:SenkoEpicCoins:1011273171627945984>"
+  iconDVTTE: "<:SenkoEpicCoins:1011273171627945984>",
+  imageEmbed: "https://cdn.discordapp.com/attachments/820557032016969751/858548806673104906/now.gif"
 };

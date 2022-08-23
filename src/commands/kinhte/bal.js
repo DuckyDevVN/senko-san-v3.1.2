@@ -12,6 +12,7 @@ module.exports = {
     const bankPre = await client.balBankPre(message.author.id);
     const bankEpic = await client.balBankEpic(message.author.id);
     const embedCoin = new MessageEmbed()
+    .setTimestamp(Date.now())
     .setDescription(`**[Trong ví]:**\n[SenkoCoins]: ${money} ${config.iconDVTT} \n[SenkoGoldCoins]: ${gold} ${config.iconDVTTG} \n[SenkoPremiumCoins]: ${pre} ${config.iconDVTTP} \n[SenkoEpicCoins]: ${epic} ${config.iconDVTTE}\n**[Trong Bank]:**\n[SenkoCoins]: ${bank} ${config.iconDVTT} \n[SenkoGoldCoins]: ${bankGold} ${config.iconDVTTG} \n[SenkoPremiumCoins]: ${bankPre} ${config.iconDVTTP} \n[SenkoEpicCoins]: ${bankEpic} ${config.iconDVTTE}`)
     .setColor(config.colorEmbed)
     .setThumbnail(message.member.displayAvatarURL())

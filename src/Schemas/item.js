@@ -1,7 +1,9 @@
-const mongodb = require('mongoose');
+const { model, Schema } = require("mongoose");
 
-const itemUser = new mongodb.Schema({
-  id: String,
-  item: [String]
-});
-module.exports = mongodb.model("item", itemUser);
+module.exports = model(
+  "vatlieu",
+  new Schema({
+    User: String,
+    Invemtory: Object,
+  })
+)

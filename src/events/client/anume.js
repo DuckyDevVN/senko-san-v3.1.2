@@ -12,7 +12,7 @@ module.exports = {
       `server hiện tại có ${guild.memberCount} member`,
       `owner sever | Alex♪#2903`,
       `owner bot | vịt buồn#2980`,
-      `copyright© 2022 by Senko's coffee☕`
+      `Copyright© Senko's coffee☕`
     ];
     setInterval(() => {
       let image = Math.floor(Math.random() * psc.length);
