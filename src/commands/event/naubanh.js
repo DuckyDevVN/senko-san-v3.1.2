@@ -26,6 +26,36 @@ module.exports = {
     - hạt dưa
     - hạt sen*/
   async execute(client, message, args) {
+    const row2 = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setLabel("nấu")
+        .setCustomId("1")
+        .setStyle("SUCCESS"),
+      new MessageButton()
+        .setLabel("nấu sau")
+        .setCustomId("2")
+        .setStyle("DANGER")
+    );
+    const row3 = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setLabel("nấu")
+        .setCustomId("3")
+        .setStyle("SUCCESS"),
+      new MessageButton()
+        .setLabel("nấu sau")
+        .setCustomId("4")
+        .setStyle("DANGER")
+    );
+    const row4 = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setLabel("nấu")
+        .setCustomId("5")
+        .setStyle("SUCCESS"),
+      new MessageButton()
+        .setLabel("nấu sau")
+        .setCustomId("6")
+        .setStyle("DANGER")
+    );
     const row = new MessageActionRow().addComponents(
       new MessageSelectMenu()
         .setCustomId("select")
@@ -140,6 +170,16 @@ module.exports = {
                 ],
               });
             else {
+              collected.update({
+                embeds: [
+                  new MessageEmbed()
+                  .setTitle(`${message.member.displayName}, bạn đã chọn nấu bánh trưng nhân đậu xanh!`)
+                  .setTimestamp(Date.now())
+                  .setColor(config.colorEmbed)
+                  .setThumbnail(message.member.displayAvatarURL()),
+                ],
+                components: [row2]
+              })
             }
           }
         });
@@ -206,6 +246,16 @@ module.exports = {
                 ],
               });
             else {
+              collected.update({
+                embeds: [
+                  new MessageEmbed()
+                  .setTitle(`${message.member.displayName}, bạn đã chọn nấu bánh trưng nhân trứng muối!`)
+                  .setTimestamp(Date.now())
+                  .setColor(config.colorEmbed)
+                  .setThumbnail(message.member.displayAvatarURL()),
+                ],
+                components: [row3]
+              })
             }
           }
         });
@@ -314,6 +364,16 @@ module.exports = {
                 ],
               });
             else {
+              collected.update({
+                embeds: [
+                  new MessageEmbed()
+                  .setTitle(`${message.member.displayName}, bạn đã chọn nấu bánh trưng nhân thập cẩm!`)
+                  .setTimestamp(Date.now())
+                  .setColor(config.colorEmbed)
+                  .setThumbnail(message.member.displayAvatarURL()),
+                ],
+                components: [row4]
+              })
             }
           }
         });

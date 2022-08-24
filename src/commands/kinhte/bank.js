@@ -31,10 +31,26 @@ module.exports = {
       new MessageButton().setLabel("Rút").setCustomId("12").setStyle("SUCCESS"),
     ]);
     const row3 = new MessageActionRow().addComponents([
-      new MessageButton().setLabel("Coin").setCustomId("3").setStyle("SUCCESS").setEmoji(config.iconDVTT),
-      new MessageButton().setLabel("Gold").setCustomId("4").setStyle("SUCCESS").setEmoji(config.iconDVTTG),
-      new MessageButton().setLabel("Pre").setCustomId("5").setStyle("SUCCESS").setEmoji(config.iconDVTTP),
-      new MessageButton().setLabel("Epic").setCustomId("6").setStyle("SUCCESS").setEmoji(config.iconDVTTE),
+      new MessageButton()
+        .setLabel("Coin")
+        .setCustomId("3")
+        .setStyle("SUCCESS")
+        .setEmoji(config.iconDVTT),
+      new MessageButton()
+        .setLabel("Gold")
+        .setCustomId("4")
+        .setStyle("SUCCESS")
+        .setEmoji(config.iconDVTTG),
+      new MessageButton()
+        .setLabel("Pre")
+        .setCustomId("5")
+        .setStyle("SUCCESS")
+        .setEmoji(config.iconDVTTP),
+      new MessageButton()
+        .setLabel("Epic")
+        .setCustomId("6")
+        .setStyle("SUCCESS")
+        .setEmoji(config.iconDVTTE),
     ]);
     const row2 = new MessageActionRow().addComponents([
       new MessageButton()
@@ -55,11 +71,11 @@ module.exports = {
       .setColor(config.colorEmbed)
       .setThumbnail(message.member.displayAvatarURL());
     const embedGuiHoacRut = new MessageEmbed()
-    .setTitle(
-      `${message.member.displayName}, bạn đã mở bank vui lòng chọn gửi hoặc rút!`
-    )
-    .setColor(config.colorEmbed)
-    .setThumbnail(message.member.displayAvatarURL());
+      .setTitle(
+        `${message.member.displayName}, bạn đã mở bank vui lòng chọn gửi hoặc rút!`
+      )
+      .setColor(config.colorEmbed)
+      .setThumbnail(message.member.displayAvatarURL());
     const embedRutCoin = new MessageEmbed()
       .setTitle(
         `${message.member.displayName}, bạn đã rút thành công ${moneyAdd} ${config.iconDVTT}}từ bank!`
@@ -72,7 +88,7 @@ module.exports = {
       )
       .setColor(config.colorEmbed)
       .setThumbnail(message.member.displayAvatarURL());
-      const embedRutGold = new MessageEmbed()
+    const embedRutGold = new MessageEmbed()
       .setTitle(
         `${message.member.displayName}, bạn đã rút thành công ${moneyAdd} ${config.iconDVTTG}}từ bank!`
       )
@@ -84,7 +100,7 @@ module.exports = {
       )
       .setColor(config.colorEmbed)
       .setThumbnail(message.member.displayAvatarURL());
-      const embedRutPre = new MessageEmbed()
+    const embedRutPre = new MessageEmbed()
       .setTitle(
         `${message.member.displayName}, bạn đã rút thành công ${moneyAdd} ${config.iconDVTTP}}từ bank!`
       )
@@ -145,7 +161,7 @@ module.exports = {
         });
       }
       if (id === "1") {
-        const moneyUser = await client.bal(message.author.id)
+        const moneyUser = await client.bal(message.author.id);
         if (moneyUser < moneyAdd) {
           collected.update({
             embeds: [embedErr],
@@ -162,7 +178,7 @@ module.exports = {
       }
       if (id === "2") {
         const bankUser = await client.balBank(message.author.id);
-          if (bankUser < moneyAdd) {
+        if (bankUser < moneyAdd) {
           collected.update({
             embeds: [embedErr],
             components: [row2],
@@ -177,7 +193,7 @@ module.exports = {
         }
       }
       if (id === "7") {
-        const moneyUser = await client.balGold(message.author.id)
+        const moneyUser = await client.balGold(message.author.id);
         if (moneyUser < moneyAdd) {
           collected.update({
             embeds: [embedErr],
@@ -194,7 +210,7 @@ module.exports = {
       }
       if (id === "8") {
         const bankUser = await client.balBankGold(message.author.id);
-          if (bankUser < moneyAdd) {
+        if (bankUser < moneyAdd) {
           collected.update({
             embeds: [embedErr],
             components: [row2],
@@ -209,7 +225,7 @@ module.exports = {
         }
       }
       if (id === "9") {
-        const moneyUser = await client.balPre(message.author.id)
+        const moneyUser = await client.balPre(message.author.id);
         if (moneyUser < moneyAdd) {
           collected.update({
             embeds: [embedErr],
@@ -226,7 +242,7 @@ module.exports = {
       }
       if (id === "10") {
         const bankUser = await client.balBankPre(message.author.id);
-          if (bankUser < moneyAdd) {
+        if (bankUser < moneyAdd) {
           collected.update({
             embeds: [embedErr],
             components: [row2],
@@ -241,7 +257,7 @@ module.exports = {
         }
       }
       if (id === "11") {
-        const moneyUser = await client.balEpic(message.author.id)
+        const moneyUser = await client.balEpic(message.author.id);
         if (moneyUser < moneyAdd) {
           collected.update({
             embeds: [embedErr],
@@ -258,7 +274,7 @@ module.exports = {
       }
       if (id === "12") {
         const bankUser = await client.balBankEpic(message.author.id);
-          if (bankUser < moneyAdd) {
+        if (bankUser < moneyAdd) {
           collected.update({
             embeds: [embedErr],
             components: [row2],
